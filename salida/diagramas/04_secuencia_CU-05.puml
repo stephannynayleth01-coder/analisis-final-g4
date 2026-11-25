@@ -1,0 +1,7 @@
+@startuml
+' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
+title CU-05 Recibir recompensa de experiencia
+participant "Personaje" as P1
+
+P1 -> P1 : Consultar experiencia disponible
+@enduml

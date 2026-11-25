@@ -1,0 +1,11 @@
+@startuml
+' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
+title CU-01 Consultar misiones disponibles
+actor "Jugador" as P1
+participant "Personaje" as P2
+participant "Mision" as P3
+
+P1 -> P2 : Consultar misiones disponibles
+P2 -> P3 : Consultar disponibilidad
+P3 -> P2 : Enviar lista de misiones disponibles
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
+skinparam classAttributeIconSize 0
+
+class Personaje {
+  - identificador : int
+  - nombre : String
+  - nivel : int
+  - experiencia_disponible : int
+  + consultar_misiones_disponibles()
+  + aceptar_mision()
+  + consultar_avance()
+  + completar_mision()
+  + consultar_progresion()
+  + consultar_historial()
+  + abandonar_mision()
+}
+
+class Mision {
+  - identificador : int
+  - nombre : String
+  - nivel_requerido : int
+  - objetivo_total : int
+  - recompensa_experiencia : int
+  + consultar_disponibilidad()
+}
+
+class IntentoMision {
+  - identificador : int
+  - personaje : int
+  - mision : int
+  - estado : String
+  - avance : int
+  - fecha_inicio : Date
+  - fecha_cierre : Date
+  + registrar_avance()
+  + completar()
+  + abandonar()
+}
+
+Personaje "1" -- "1..*" IntentoMision : tiene
+IntentoMision "1" -- "1" Mision : pertenece_a
+@enduml

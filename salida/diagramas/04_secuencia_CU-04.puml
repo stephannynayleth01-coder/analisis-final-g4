@@ -1,0 +1,12 @@
+@startuml
+' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
+title CU-04 Completar una misión
+actor "Jugador" as P1
+participant "Personaje" as P2
+participant "IntentoMision" as P3
+
+P1 -> P2 : Completar misión
+P2 -> P3 : Completar intento de misión
+P3 -> P2 : Registrar recompensa de experiencia
+P2 -> P2 : Subir de nivel
+@enduml

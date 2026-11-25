@@ -1,0 +1,37 @@
+@startuml
+' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
+' La herencia NO se traduce a ER: decidir cómo modelarla (tabla única, por clase...) es trabajo tuyo.
+hide circle
+skinparam linetype ortho
+
+entity Personaje {
+  * identificador : int <<PK>>
+  --
+  nombre : varchar
+  nivel : int
+  experiencia_disponible : int
+}
+
+entity Mision {
+  * identificador : int <<PK>>
+  --
+  nombre : varchar
+  nivel_requerido : int
+  objetivo_total : int
+  recompensa_experiencia : int
+}
+
+entity IntentoMision {
+  * identificador : int <<PK>>
+  --
+  personaje : int
+  mision : int
+  estado : varchar
+  avance : int
+  fecha_inicio : date
+  fecha_cierre : date
+}
+
+Personaje ||--|{ IntentoMision : tiene
+IntentoMision ||--|| Mision : pertenece_a
+@enduml

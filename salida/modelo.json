@@ -1,0 +1,581 @@
+{
+  "modulo": "Misiones y progresión",
+  "actores": [
+    {
+      "req_ids": [
+        "RF-01",
+        "RF-02",
+        "RF-03",
+        "RF-04",
+        "RF-05",
+        "RF-06",
+        "RF-08",
+        "RN-01",
+        "RN-02",
+        "RN-03",
+        "RN-04",
+        "RN-05",
+        "RN-06",
+        "RN-07",
+        "RN-08"
+      ],
+      "nombre": "Jugador",
+      "descripcion": ""
+    },
+    {
+      "req_ids": [
+        "RF-10",
+        "RN-08"
+      ],
+      "nombre": "Motor del juego",
+      "descripcion": ""
+    }
+  ],
+  "casos_uso": [
+    {
+      "req_ids": [
+        "RF-01"
+      ],
+      "id": "CU-01",
+      "nombre": "Consultar misiones disponibles",
+      "actores": [
+        "Jugador"
+      ],
+      "descripcion": "El jugador puede consultar el catálogo de misiones disponibles para su personaje.",
+      "incluye": [],
+      "extiende": []
+    },
+    {
+      "req_ids": [
+        "RF-02"
+      ],
+      "id": "CU-02",
+      "nombre": "Aceptar una misión",
+      "actores": [
+        "Jugador"
+      ],
+      "descripcion": "El jugador puede aceptar una misión disponible para su personaje y comenzar un nuevo intento.",
+      "incluye": [],
+      "extiende": []
+    },
+    {
+      "req_ids": [
+        "RF-03"
+      ],
+      "id": "CU-03",
+      "nombre": "Consultar avance de un intento activo",
+      "actores": [
+        "Jugador"
+      ],
+      "descripcion": "El jugador puede consultar el avance de un intento activo de misión de su personaje, expresado en unidades y en porcentaje entero.",
+      "incluye": [],
+      "extiende": []
+    },
+    {
+      "req_ids": [
+        "RF-04"
+      ],
+      "id": "CU-04",
+      "nombre": "Completar una misión",
+      "actores": [
+        "Jugador"
+      ],
+      "descripcion": "El jugador puede completar una misión cuando su intento activo alcanza la totalidad del objetivo.",
+      "incluye": [],
+      "extiende": []
+    },
+    {
+      "req_ids": [
+        "RF-05"
+      ],
+      "id": "CU-05",
+      "nombre": "Recibir recompensa de experiencia",
+      "actores": [
+        "Jugador"
+      ],
+      "descripcion": "El sistema otorga automáticamente al personaje la recompensa fija de experiencia correspondiente a una misión completada.",
+      "incluye": [],
+      "extiende": []
+    },
+    {
+      "req_ids": [
+        "RF-06"
+      ],
+      "id": "CU-06",
+      "nombre": "Consultar progresión del personaje",
+      "actores": [
+        "Jugador"
+      ],
+      "descripcion": "El jugador puede consultar el nivel actual, la experiencia disponible, la experiencia requerida para el siguiente nivel y la experiencia faltante de su personaje.",
+      "incluye": [],
+      "extiende": []
+    },
+    {
+      "req_ids": [
+        "RF-08"
+      ],
+      "id": "CU-07",
+      "nombre": "Consultar historial de misiones",
+      "actores": [
+        "Jugador"
+      ],
+      "descripcion": "El jugador puede consultar el historial de intentos de misión completados o abandonados de su personaje.",
+      "incluye": [],
+      "extiende": []
+    },
+    {
+      "req_ids": [
+        "RF-09"
+      ],
+      "id": "CU-08",
+      "nombre": "Abandonar una misión",
+      "actores": [
+        "Jugador"
+      ],
+      "descripcion": "El jugador puede abandonar una misión con intento activo.",
+      "incluye": [],
+      "extiende": []
+    },
+    {
+      "req_ids": [
+        "RF-10"
+      ],
+      "id": "CU-09",
+      "nombre": "Registrar avance de un intento activo",
+      "actores": [
+        "Motor del juego"
+      ],
+      "descripcion": "El motor del juego puede registrar unidades de avance sobre un intento de misión activo.",
+      "incluye": [],
+      "extiende": []
+    }
+  ],
+  "entidades": [
+    {
+      "req_ids": [
+        "RN-01",
+        "RN-02",
+        "RN-03",
+        "RN-04",
+        "RN-05",
+        "RN-06",
+        "RN-07",
+        "RN-08"
+      ],
+      "nombre": "Personaje",
+      "es_abstracta": false,
+      "hereda_de": null,
+      "atributos": [
+        {
+          "nombre": "identificador",
+          "tipo": "entero",
+          "es_clave": true
+        },
+        {
+          "nombre": "nombre",
+          "tipo": "texto",
+          "es_clave": false
+        },
+        {
+          "nombre": "nivel",
+          "tipo": "entero",
+          "es_clave": false
+        },
+        {
+          "nombre": "experiencia_disponible",
+          "tipo": "entero",
+          "es_clave": false
+        }
+      ],
+      "metodos": [
+        {
+          "req_ids": [
+            "RF-01"
+          ],
+          "nombre": "consultar_misiones_disponibles",
+          "descripcion": "",
+          "retorno": "ninguno"
+        },
+        {
+          "req_ids": [
+            "RF-02"
+          ],
+          "nombre": "aceptar_mision",
+          "descripcion": "",
+          "retorno": "ninguno"
+        },
+        {
+          "req_ids": [
+            "RF-03"
+          ],
+          "nombre": "consultar_avance",
+          "descripcion": "",
+          "retorno": "ninguno"
+        },
+        {
+          "req_ids": [
+            "RF-04"
+          ],
+          "nombre": "completar_mision",
+          "descripcion": "",
+          "retorno": "ninguno"
+        },
+        {
+          "req_ids": [
+            "RF-06"
+          ],
+          "nombre": "consultar_progresion",
+          "descripcion": "",
+          "retorno": "ninguno"
+        },
+        {
+          "req_ids": [
+            "RF-08"
+          ],
+          "nombre": "consultar_historial",
+          "descripcion": "",
+          "retorno": "ninguno"
+        },
+        {
+          "req_ids": [
+            "RF-09"
+          ],
+          "nombre": "abandonar_mision",
+          "descripcion": "",
+          "retorno": "ninguno"
+        }
+      ]
+    },
+    {
+      "req_ids": [
+        "RN-01",
+        "RN-02",
+        "RN-03",
+        "RN-04",
+        "RN-05",
+        "RN-06",
+        "RN-07",
+        "RN-08"
+      ],
+      "nombre": "Mision",
+      "es_abstracta": false,
+      "hereda_de": null,
+      "atributos": [
+        {
+          "nombre": "identificador",
+          "tipo": "entero",
+          "es_clave": true
+        },
+        {
+          "nombre": "nombre",
+          "tipo": "texto",
+          "es_clave": false
+        },
+        {
+          "nombre": "nivel_requerido",
+          "tipo": "entero",
+          "es_clave": false
+        },
+        {
+          "nombre": "objetivo_total",
+          "tipo": "entero",
+          "es_clave": false
+        },
+        {
+          "nombre": "recompensa_experiencia",
+          "tipo": "entero",
+          "es_clave": false
+        }
+      ],
+      "metodos": [
+        {
+          "req_ids": [
+            "RF-01"
+          ],
+          "nombre": "consultar_disponibilidad",
+          "descripcion": "",
+          "retorno": "ninguno"
+        }
+      ]
+    },
+    {
+      "req_ids": [
+        "RN-01",
+        "RN-02",
+        "RN-03",
+        "RN-04",
+        "RN-05",
+        "RN-06",
+        "RN-07",
+        "RN-08"
+      ],
+      "nombre": "IntentoMision",
+      "es_abstracta": false,
+      "hereda_de": null,
+      "atributos": [
+        {
+          "nombre": "identificador",
+          "tipo": "entero",
+          "es_clave": true
+        },
+        {
+          "nombre": "personaje",
+          "tipo": "entero",
+          "es_clave": false
+        },
+        {
+          "nombre": "mision",
+          "tipo": "entero",
+          "es_clave": false
+        },
+        {
+          "nombre": "estado",
+          "tipo": "texto",
+          "es_clave": false
+        },
+        {
+          "nombre": "avance",
+          "tipo": "entero",
+          "es_clave": false
+        },
+        {
+          "nombre": "fecha_inicio",
+          "tipo": "fecha",
+          "es_clave": false
+        },
+        {
+          "nombre": "fecha_cierre",
+          "tipo": "fecha",
+          "es_clave": false
+        }
+      ],
+      "metodos": [
+        {
+          "req_ids": [
+            "RF-10"
+          ],
+          "nombre": "registrar_avance",
+          "descripcion": "",
+          "retorno": "ninguno"
+        },
+        {
+          "req_ids": [
+            "RF-04"
+          ],
+          "nombre": "completar",
+          "descripcion": "",
+          "retorno": "ninguno"
+        },
+        {
+          "req_ids": [
+            "RF-09"
+          ],
+          "nombre": "abandonar",
+          "descripcion": "",
+          "retorno": "ninguno"
+        }
+      ]
+    }
+  ],
+  "relaciones": [
+    {
+      "req_ids": [],
+      "desde": "Personaje",
+      "hasta": "IntentoMision",
+      "tipo": "asociacion",
+      "multiplicidad_desde": "1",
+      "multiplicidad_hasta": "1..*",
+      "etiqueta": "tiene"
+    },
+    {
+      "req_ids": [],
+      "desde": "IntentoMision",
+      "hasta": "Mision",
+      "tipo": "asociacion",
+      "multiplicidad_desde": "1",
+      "multiplicidad_hasta": "1",
+      "etiqueta": "pertenece_a"
+    }
+  ],
+  "secuencias": [
+    {
+      "req_ids": [],
+      "caso_uso": "CU-01",
+      "mensajes": [
+        {
+          "de": "Jugador",
+          "a": "Personaje",
+          "texto": "Consultar misiones disponibles"
+        },
+        {
+          "de": "Personaje",
+          "a": "Mision",
+          "texto": "Consultar disponibilidad"
+        },
+        {
+          "de": "Mision",
+          "a": "Personaje",
+          "texto": "Enviar lista de misiones disponibles"
+        }
+      ]
+    },
+    {
+      "req_ids": [],
+      "caso_uso": "CU-02",
+      "mensajes": [
+        {
+          "de": "Jugador",
+          "a": "Personaje",
+          "texto": "Aceptar misión"
+        },
+        {
+          "de": "Personaje",
+          "a": "Mision",
+          "texto": "Consultar disponibilidad"
+        },
+        {
+          "de": "Mision",
+          "a": "Personaje",
+          "texto": "Crear intento de misión"
+        },
+        {
+          "de": "Personaje",
+          "a": "IntentoMision",
+          "texto": "Registrar intento de misión"
+        }
+      ]
+    },
+    {
+      "req_ids": [],
+      "caso_uso": "CU-03",
+      "mensajes": [
+        {
+          "de": "Jugador",
+          "a": "Personaje",
+          "texto": "Consultar avance"
+        },
+        {
+          "de": "Personaje",
+          "a": "IntentoMision",
+          "texto": "Consultar avance"
+        },
+        {
+          "de": "IntentoMision",
+          "a": "Personaje",
+          "texto": "Enviar avance"
+        }
+      ]
+    },
+    {
+      "req_ids": [],
+      "caso_uso": "CU-04",
+      "mensajes": [
+        {
+          "de": "Jugador",
+          "a": "Personaje",
+          "texto": "Completar misión"
+        },
+        {
+          "de": "Personaje",
+          "a": "IntentoMision",
+          "texto": "Completar intento de misión"
+        },
+        {
+          "de": "IntentoMision",
+          "a": "Personaje",
+          "texto": "Registrar recompensa de experiencia"
+        },
+        {
+          "de": "Personaje",
+          "a": "Personaje",
+          "texto": "Subir de nivel"
+        }
+      ]
+    },
+    {
+      "req_ids": [],
+      "caso_uso": "CU-05",
+      "mensajes": [
+        {
+          "de": "Personaje",
+          "a": "Personaje",
+          "texto": "Consultar experiencia disponible"
+        }
+      ]
+    },
+    {
+      "req_ids": [],
+      "caso_uso": "CU-06",
+      "mensajes": [
+        {
+          "de": "Jugador",
+          "a": "Personaje",
+          "texto": "Consultar progresión"
+        },
+        {
+          "de": "Personaje",
+          "a": "Personaje",
+          "texto": "Enviar progresión"
+        }
+      ]
+    },
+    {
+      "req_ids": [],
+      "caso_uso": "CU-07",
+      "mensajes": [
+        {
+          "de": "Jugador",
+          "a": "Personaje",
+          "texto": "Consultar historial"
+        },
+        {
+          "de": "Personaje",
+          "a": "IntentoMision",
+          "texto": "Consultar historial"
+        },
+        {
+          "de": "IntentoMision",
+          "a": "Personaje",
+          "texto": "Enviar historial"
+        }
+      ]
+    },
+    {
+      "req_ids": [],
+      "caso_uso": "CU-08",
+      "mensajes": [
+        {
+          "de": "Jugador",
+          "a": "Personaje",
+          "texto": "Abandonar misión"
+        },
+        {
+          "de": "Personaje",
+          "a": "IntentoMision",
+          "texto": "Abandonar intento de misión"
+        },
+        {
+          "de": "IntentoMision",
+          "a": "Personaje",
+          "texto": "Registrar avance"
+        }
+      ]
+    },
+    {
+      "req_ids": [],
+      "caso_uso": "CU-09",
+      "mensajes": [
+        {
+          "de": "Motor del juego",
+          "a": "IntentoMision",
+          "texto": "Registrar avance"
+        },
+        {
+          "de": "IntentoMision",
+          "a": "Personaje",
+          "texto": "Actualizar avance"
+        }
+      ]
+    }
+  ]
+}

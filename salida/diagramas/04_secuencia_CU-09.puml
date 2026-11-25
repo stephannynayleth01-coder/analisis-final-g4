@@ -1,0 +1,10 @@
+@startuml
+' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
+title CU-09 Registrar avance de un intento activo
+actor "Motor del juego" as P1
+participant "IntentoMision" as P2
+participant "Personaje" as P3
+
+P1 -> P2 : Registrar avance
+P2 -> P3 : Actualizar avance
+@enduml
