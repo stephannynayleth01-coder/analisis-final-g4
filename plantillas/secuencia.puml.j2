@@ -1,0 +1,11 @@
+@startuml
+' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
+title {{ s.titulo|q }}
+{% for p in s.participantes %}
+{{ 'actor' if p.es_actor else 'participant' }} "{{ p.nombre|q }}" as {{ p.alias }}
+{% endfor %}
+
+{% for m in s.mensajes %}
+{{ m.de }} -> {{ m.a }} : {{ m.texto|q }}
+{% endfor %}
+@enduml

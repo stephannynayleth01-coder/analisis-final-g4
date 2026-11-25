@@ -1,0 +1,39 @@
+"""Esqueleto generado por spec2code. Módulo: {{ v.modulo }}
+
+NO es una solución: son clases y firmas con TODO. Completa la lógica, audita cada
+clase contra la spec y corrige la SPEC (no este archivo) cuando el error venga de ella.
+"""
+from __future__ import annotations
+
+{% if v.entidades|selectattr('usa_fecha_py')|list %}
+from datetime import date
+{% endif %}
+{% if v.entidades|selectattr('es_abstracta')|rejectattr('hereda_de')|list %}
+from abc import ABC
+{% endif %}
+{% for e in v.entidades %}
+
+
+class {{ e.nombre }}{% if e.hereda_de %}({{ e.hereda_de }}){% elif e.es_abstracta %}(ABC){% endif %}:
+    """{{ e.nombre }}. Trazabilidad: {{ e.req_ids|join(', ') or 'sin req_ids' }}."""
+
+    def __init__(self{% for a in e.constructor %}, {{ a.nombre }}: {{ a.py }}{% endfor %}) -> None:
+{% if e.hereda_de %}
+        super().__init__({% for a in e.heredados %}{{ a.nombre }}{{ ', ' if not loop.last }}{% endfor %})
+{% endif %}
+{% for a in e.atributos %}
+        self.{{ a.nombre }}: {{ a.py }} = {{ a.nombre }}  # TODO: encapsulamiento (propiedades)
+{% endfor %}
+{% for c in e.campos_rel %}
+        self.{{ c.snake }}: {{ ('list[' ~ c.clase ~ ']') if c.muchos else (c.clase ~ ' | None') }} = {{ '[]' if c.muchos else 'None' }}  # {{ c.tipo_rel }}{% if c.etiqueta %}: {{ c.etiqueta }}{% endif %} ({{ c.req_ids|join(', ') }})
+{% endfor %}
+{% if not e.constructor and not e.campos_rel and not e.hereda_de %}
+        pass
+{% endif %}
+{% for mt in e.metodos %}
+
+    def {{ mt.nombre }}(self) -> {{ mt.ret_py }}:
+        """{{ mt.descripcion or mt.nombre }} ({{ mt.req_ids|join(', ') or 'sin req_ids' }})."""
+        raise NotImplementedError("TODO: implementar {{ e.nombre }}.{{ mt.nombre }}")
+{% endfor %}
+{% endfor %}

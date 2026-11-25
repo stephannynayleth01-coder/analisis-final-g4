@@ -1,0 +1,62 @@
+{
+  "modulo": "Tienda del herrero",
+  "actores": [
+    {"nombre": "Jugador", "descripcion": "Controla un personaje y usa la tienda", "req_ids": ["RF-01", "RF-02", "RF-03", "RF-04"]},
+    {"nombre": "Administrador del juego", "descripcion": "Mantiene el catálogo", "req_ids": ["RF-05"]}
+  ],
+  "casos_uso": [
+    {"id": "CU-01", "nombre": "Consultar catálogo", "actores": ["Jugador"], "req_ids": ["RF-01", "RNF-01"]},
+    {"id": "CU-02", "nombre": "Comprar artículo", "actores": ["Jugador"], "req_ids": ["RF-02", "RN-01", "RN-03"]},
+    {"id": "CU-03", "nombre": "Vender objeto", "actores": ["Jugador"], "req_ids": ["RF-03", "RN-02"]},
+    {"id": "CU-04", "nombre": "Reparar arma", "actores": ["Jugador"], "req_ids": ["RF-04", "RN-04"]},
+    {"id": "CU-05", "nombre": "Actualizar artículo", "actores": ["Administrador del juego"], "req_ids": ["RF-05"]}
+  ],
+  "entidades": [
+    {"nombre": "Personaje", "req_ids": ["RF-02", "RF-03", "RF-04"],
+     "atributos": [
+       {"nombre": "nombre", "tipo": "texto", "es_clave": true},
+       {"nombre": "oro", "tipo": "entero"}]},
+    {"nombre": "Tienda", "req_ids": ["RF-01", "RF-02", "RF-03", "RF-04", "RF-05"],
+     "atributos": [{"nombre": "nombre", "tipo": "texto", "es_clave": true}],
+     "metodos": [
+       {"nombre": "listar_catalogo", "descripcion": "Devuelve los artículos con precio y unidades", "req_ids": ["RF-01"], "retorno": "lista"},
+       {"nombre": "vender_a_personaje", "descripcion": "Compra del jugador si tiene oro y hay unidades", "req_ids": ["RF-02", "RN-01", "RN-03"]},
+       {"nombre": "comprar_a_personaje", "descripcion": "Recibe un objeto y paga el 50 % de su precio", "req_ids": ["RF-03", "RN-02"]},
+       {"nombre": "reparar_arma", "descripcion": "Restaura la durabilidad cobrando 2 de oro por punto", "req_ids": ["RF-04", "RN-04"]},
+       {"nombre": "actualizar_articulo", "descripcion": "Cambia precio y unidades disponibles", "req_ids": ["RF-05"]}]},
+    {"nombre": "ArticuloEnVenta", "req_ids": ["RF-01", "RF-05", "RN-03"],
+     "atributos": [{"nombre": "unidades_disponibles", "tipo": "entero"}]},
+    {"nombre": "Objeto", "es_abstracta": true, "req_ids": ["RF-02", "RF-03"],
+     "atributos": [
+       {"nombre": "nombre", "tipo": "texto", "es_clave": true},
+       {"nombre": "precio", "tipo": "entero"}],
+     "metodos": [
+       {"nombre": "calcular_precio_venta", "descripcion": "50 % del precio, redondeado hacia abajo", "req_ids": ["RN-02"], "retorno": "entero"}]},
+    {"nombre": "Arma", "hereda_de": "Objeto", "req_ids": ["RF-04", "RN-04"],
+     "atributos": [
+       {"nombre": "durabilidad", "tipo": "entero"},
+       {"nombre": "durabilidad_maxima", "tipo": "entero"}],
+     "metodos": [
+       {"nombre": "calcular_costo_reparacion", "descripcion": "2 de oro por punto de durabilidad faltante", "req_ids": ["RN-04"], "retorno": "entero"}]},
+    {"nombre": "Pocion", "hereda_de": "Objeto", "req_ids": ["RF-02"],
+     "atributos": [{"nombre": "puntos_curacion", "tipo": "entero"}]}
+  ],
+  "relaciones": [
+    {"desde": "Tienda", "hasta": "ArticuloEnVenta", "tipo": "composicion", "multiplicidad_desde": "1", "multiplicidad_hasta": "0..*", "etiqueta": "ofrece", "req_ids": ["RF-01"]},
+    {"desde": "ArticuloEnVenta", "hasta": "Objeto", "tipo": "asociacion", "multiplicidad_desde": "0..*", "multiplicidad_hasta": "1", "etiqueta": "vende", "req_ids": ["RF-01", "RF-02"]},
+    {"desde": "Personaje", "hasta": "Objeto", "tipo": "agregacion", "multiplicidad_desde": "1", "multiplicidad_hasta": "0..*", "etiqueta": "posee", "req_ids": ["RF-02", "RF-03"]}
+  ],
+  "secuencias": [
+    {"caso_uso": "CU-02", "req_ids": ["RF-02", "RN-01", "RN-03"], "mensajes": [
+      {"de": "Jugador", "a": "Tienda", "texto": "vender_a_personaje(personaje, articulo)"},
+      {"de": "Tienda", "a": "ArticuloEnVenta", "texto": "unidades_disponibles > 0 ? (RN-03)"},
+      {"de": "Tienda", "a": "Personaje", "texto": "oro >= precio ? (RN-01)"},
+      {"de": "Tienda", "a": "Personaje", "texto": "descontar oro y entregar objeto"},
+      {"de": "Tienda", "a": "Jugador", "texto": "confirmación o error con código de regla"}]},
+    {"caso_uso": "CU-04", "req_ids": ["RF-04", "RN-04"], "mensajes": [
+      {"de": "Jugador", "a": "Tienda", "texto": "reparar_arma(personaje, arma)"},
+      {"de": "Tienda", "a": "Arma", "texto": "calcular_costo_reparacion()"},
+      {"de": "Tienda", "a": "Personaje", "texto": "descontar oro"},
+      {"de": "Tienda", "a": "Jugador", "texto": "arma reparada o error RN-04"}]}
+  ]
+}

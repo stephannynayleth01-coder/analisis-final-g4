@@ -1,0 +1,24 @@
+@startuml
+' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
+skinparam classAttributeIconSize 0
+{% for e in v.entidades %}
+
+{{ 'abstract class' if e.es_abstracta else 'class' }} {{ e.nombre }} {
+{% for a in e.atributos %}
+  - {{ a.nombre }} : {{ a.uml }}
+{% endfor %}
+{% for mt in e.metodos %}
+  + {{ mt.nombre }}(){% if mt.ret_uml %} : {{ mt.ret_uml }}{% endif %}
+
+{% endfor %}
+}
+{% endfor %}
+
+{% for e in v.entidades if e.hereda_de %}
+{{ e.hereda_de }} <|-- {{ e.nombre }}
+{% endfor %}
+{% for r in v.relaciones %}
+{{ r.desde }} "{{ r.mult_desde }}" {{ r.flecha }} "{{ r.mult_hasta }}" {{ r.hasta }}{% if r.etiqueta %} : {{ r.etiqueta|q }}{% endif %}
+
+{% endfor %}
+@enduml

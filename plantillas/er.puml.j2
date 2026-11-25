@@ -1,0 +1,31 @@
+@startuml
+' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
+' La herencia NO se traduce a ER: decidir cómo modelarla (tabla única, por clase...) es trabajo tuyo.
+hide circle
+skinparam linetype ortho
+{% for e in v.entidades %}
+
+{% if e.hereda_de %}
+' {{ e.nombre }} hereda de {{ e.hereda_de }}: decisión de modelado pendiente
+{% endif %}
+entity {{ e.nombre }} {
+{% for a in e.atributos if a.es_clave %}
+  * {{ a.nombre }} : {{ a.er }} <<PK>>
+{% endfor %}
+{% if e.atributos|selectattr('es_clave')|list|length > 0 and e.atributos|rejectattr('es_clave')|list|length > 0 %}
+  --
+{% endif %}
+{% for a in e.atributos if not a.es_clave %}
+  {{ a.nombre }} : {{ a.er }}
+{% endfor %}
+}
+{% endfor %}
+
+{% for r in v.relaciones %}
+{% if r.n_a_m %}
+' {{ r.desde }} N:M {{ r.hasta }}: falta la tabla intermedia (no la genera el pipeline)
+{% endif %}
+{{ r.desde }} {{ r.er_izq }}--{{ r.er_der }} {{ r.hasta }}{% if r.etiqueta %} : {{ r.etiqueta|q }}{% endif %}
+
+{% endfor %}
+@enduml

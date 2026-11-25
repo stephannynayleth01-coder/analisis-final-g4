@@ -1,0 +1,26 @@
+@startuml
+' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
+left to right direction
+skinparam packageStyle rectangle
+{% for a in v.actores %}
+actor "{{ a.nombre|q }}" as {{ a.alias }}
+{% endfor %}
+
+rectangle "{{ v.modulo|q }}" {
+{% for c in v.casos %}
+  usecase "{{ c.id }} {{ c.nombre|q }}" as {{ c.alias }}
+{% endfor %}
+}
+
+{% for c in v.casos %}
+{% for a in c.actores %}
+{{ a }} --> {{ c.alias }}
+{% endfor %}
+{% for x in c.incluye %}
+{{ c.alias }} .> {{ x }} : <<include>>
+{% endfor %}
+{% for x in c.extiende %}
+{{ c.alias }} .> {{ x }} : <<extend>>
+{% endfor %}
+{% endfor %}
+@enduml

@@ -1,0 +1,37 @@
+// Esqueleto generado por spec2code. Módulo: {{ v.modulo }}
+// NO es una solución: clases y firmas con TODO. Completa la lógica y audita contra la spec.
+package rpgmanager.{{ v.paquete }};
+
+{% for i in e.java_imports %}
+import {{ i }};
+{% endfor %}
+{% if e.java_imports %}
+
+{% endif %}
+/** {{ e.nombre }}. Trazabilidad: {{ e.req_ids|join(', ') or 'sin req_ids' }}. */
+public {{ 'abstract ' if e.es_abstracta }}class {{ e.nombre }}{% if e.hereda_de %} extends {{ e.hereda_de }}{% endif %} {
+{% for a in e.atributos %}
+    private {{ a.java }} {{ a.camel }};
+{% endfor %}
+{% for c in e.campos_rel %}
+    private {{ ('List<' ~ c.clase ~ '>') if c.muchos else c.clase }} {{ c.nombre }}{% if c.muchos %} = new ArrayList<>(){% endif %}; // {{ c.tipo_rel }}{% if c.etiqueta %}: {{ c.etiqueta }}{% endif %} ({{ c.req_ids|join(', ') }})
+{% endfor %}
+
+    public {{ e.nombre }}({% for a in e.constructor %}{{ a.java }} {{ a.camel }}{{ ', ' if not loop.last }}{% endfor %}) {
+{% if e.hereda_de %}
+        super({% for a in e.heredados %}{{ a.camel }}{{ ', ' if not loop.last }}{% endfor %});
+{% endif %}
+{% for a in e.atributos %}
+        this.{{ a.camel }} = {{ a.camel }};
+{% endfor %}
+    }
+
+    // TODO: getters y setters (encapsulamiento)
+{% for mt in e.metodos %}
+
+    /** {{ mt.descripcion or mt.nombre }} ({{ mt.req_ids|join(', ') or 'sin req_ids' }}). */
+    public {{ mt.ret_java }} {{ mt.camel }}() {
+        throw new UnsupportedOperationException("TODO: implementar {{ e.nombre }}.{{ mt.nombre }}");
+    }
+{% endfor %}
+}
