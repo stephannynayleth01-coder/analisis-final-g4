@@ -1,7 +1,9 @@
 @startuml
 ' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
-title CU-05 Recibir recompensa de experiencia
-participant "Personaje" as P1
+title CU-05 Consultar progresión
+actor "Jugador" as P1
+participant "Personaje" as P2
 
-P1 -> P1 : Consultar experiencia disponible
+P1 -> P2 : consultar_progresion()
+P2 -> P1 : retorna progresión
 @enduml

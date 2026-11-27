@@ -5,8 +5,7 @@ actor "Jugador" as P1
 participant "Personaje" as P2
 participant "IntentoMision" as P3
 
-P1 -> P2 : Completar misión
-P2 -> P3 : Completar intento de misión
-P3 -> P2 : Registrar recompensa de experiencia
-P2 -> P2 : Subir de nivel
+P1 -> P2 : completar_mision(mision)
+P2 -> P3 : completar()
+P3 -> P2 : retorna intento completado
 @enduml

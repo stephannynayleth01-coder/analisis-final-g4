@@ -3,41 +3,42 @@
 skinparam classAttributeIconSize 0
 
 class Personaje {
-  - identificador : int
+  - id_personaje : int
   - nombre : String
   - nivel : int
   - experiencia_disponible : int
-  + consultar_misiones_disponibles()
+  + consultar_misiones_disponibles() : List
   + aceptar_mision()
   + consultar_avance()
   + completar_mision()
+  + otorgar_experiencia()
+  + verificar_subida_nivel()
   + consultar_progresion()
   + consultar_historial()
   + abandonar_mision()
 }
 
 class Mision {
-  - identificador : int
+  - id_mision : int
   - nombre : String
   - nivel_requerido : int
   - objetivo_total : int
   - recompensa_experiencia : int
-  + consultar_disponibilidad()
+  + consultar_misiones_disponibles()
 }
 
 class IntentoMision {
-  - identificador : int
+  - id_intento : int
   - personaje : int
   - mision : int
   - estado : String
   - avance : int
   - fecha_inicio : Date
   - fecha_cierre : Date
-  + registrar_avance()
   + completar()
   + abandonar()
+  + registrar_avance()
 }
 
-Personaje "1" -- "1..*" IntentoMision : tiene
-IntentoMision "1" -- "1" Mision : pertenece_a
+Personaje "1" -- "0..*" IntentoMision
 @enduml

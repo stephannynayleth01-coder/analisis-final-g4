@@ -8,22 +8,25 @@ actor "Motor del juego" as A2
 rectangle "Misiones y progresión" {
   usecase "CU-01 Consultar misiones disponibles" as CU_01
   usecase "CU-02 Aceptar una misión" as CU_02
-  usecase "CU-03 Consultar avance de un intento activo" as CU_03
+  usecase "CU-03 Consultar avance de una misión" as CU_03
   usecase "CU-04 Completar una misión" as CU_04
-  usecase "CU-05 Recibir recompensa de experiencia" as CU_05
-  usecase "CU-06 Consultar progresión del personaje" as CU_06
-  usecase "CU-07 Consultar historial de misiones" as CU_07
-  usecase "CU-08 Abandonar una misión" as CU_08
-  usecase "CU-09 Registrar avance de un intento activo" as CU_09
+  usecase "CU-05 Consultar progresión" as CU_05
+  usecase "CU-06 Consultar historial de misiones" as CU_06
+  usecase "CU-07 Abandonar una misión" as CU_07
+  usecase "CU-08 Registrar avance en una misión" as CU_08
 }
 
 A1 --> CU_01
 A1 --> CU_02
+CU_02 .> CU_01 : <<include>>
 A1 --> CU_03
+CU_03 .> CU_02 : <<include>>
 A1 --> CU_04
+CU_04 .> CU_02 : <<include>>
 A1 --> CU_05
 A1 --> CU_06
 A1 --> CU_07
-A1 --> CU_08
-A2 --> CU_09
+CU_07 .> CU_02 : <<include>>
+A2 --> CU_08
+CU_08 .> CU_02 : <<include>>
 @enduml

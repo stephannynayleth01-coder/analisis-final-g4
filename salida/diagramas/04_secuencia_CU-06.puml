@@ -1,9 +1,9 @@
 @startuml
 ' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
-title CU-06 Consultar progresión del personaje
+title CU-06 Consultar historial de misiones
 actor "Jugador" as P1
 participant "Personaje" as P2
 
-P1 -> P2 : Consultar progresión
-P2 -> P2 : Enviar progresión
+P1 -> P2 : consultar_historial()
+P2 -> P1 : retorna historial de misiones
 @enduml

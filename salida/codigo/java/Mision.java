@@ -2,16 +2,16 @@
 // NO es una solución: clases y firmas con TODO. Completa la lógica y audita contra la spec.
 package rpgmanager.misionesyprogresion;
 
-/** Mision. Trazabilidad: RN-01, RN-02, RN-03, RN-04, RN-05, RN-06, RN-07, RN-08. */
+/** Mision. Trazabilidad: RF-01, RF-02, RF-03, RF-04, RF-05, RF-07, RF-08, RF-09. */
 public class Mision {
-    private int identificador;
+    private int idMision;
     private String nombre;
     private int nivelRequerido;
     private int objetivoTotal;
     private int recompensaExperiencia;
 
-    public Mision(int identificador, String nombre, int nivelRequerido, int objetivoTotal, int recompensaExperiencia) {
-        this.identificador = identificador;
+    public Mision(int idMision, String nombre, int nivelRequerido, int objetivoTotal, int recompensaExperiencia) {
+        this.idMision = idMision;
         this.nombre = nombre;
         this.nivelRequerido = nivelRequerido;
         this.objetivoTotal = objetivoTotal;
@@ -20,8 +20,8 @@ public class Mision {
 
     // TODO: getters y setters (encapsulamiento)
 
-    /** consultar_disponibilidad (RF-01). */
-    public void consultarDisponibilidad() {
-        throw new UnsupportedOperationException("TODO: implementar Mision.consultar_disponibilidad");
+    /** consultar_misiones_disponibles (RF-01). */
+    public void consultarMisionesDisponibles() {
+        throw new UnsupportedOperationException("TODO: implementar Mision.consultar_misiones_disponibles");
     }
 }

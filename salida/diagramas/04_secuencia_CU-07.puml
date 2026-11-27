@@ -1,11 +1,11 @@
 @startuml
 ' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
-title CU-07 Consultar historial de misiones
+title CU-07 Abandonar una misión
 actor "Jugador" as P1
 participant "Personaje" as P2
 participant "IntentoMision" as P3
 
-P1 -> P2 : Consultar historial
-P2 -> P3 : Consultar historial
-P3 -> P2 : Enviar historial
+P1 -> P2 : abandonar_mision(mision)
+P2 -> P3 : abandonar()
+P3 -> P2 : retorna intento abandonado
 @enduml

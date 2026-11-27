@@ -5,16 +5,16 @@ package rpgmanager.misionesyprogresion;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Personaje. Trazabilidad: RN-01, RN-02, RN-03, RN-04, RN-05, RN-06, RN-07, RN-08. */
+/** Personaje. Trazabilidad: RF-01, RF-02, RF-03, RF-04, RF-06, RF-08, RF-09. */
 public class Personaje {
-    private int identificador;
+    private int idPersonaje;
     private String nombre;
     private int nivel;
     private int experienciaDisponible;
-    private List<IntentoMision> intentoMisions = new ArrayList<>(); // asociacion: tiene ()
+    private List<IntentoMision> intentoMisions = new ArrayList<>(); // asociacion ()
 
-    public Personaje(int identificador, String nombre, int nivel, int experienciaDisponible) {
-        this.identificador = identificador;
+    public Personaje(int idPersonaje, String nombre, int nivel, int experienciaDisponible) {
+        this.idPersonaje = idPersonaje;
         this.nombre = nombre;
         this.nivel = nivel;
         this.experienciaDisponible = experienciaDisponible;
@@ -23,7 +23,7 @@ public class Personaje {
     // TODO: getters y setters (encapsulamiento)
 
     /** consultar_misiones_disponibles (RF-01). */
-    public void consultarMisionesDisponibles() {
+    public List<Object> consultarMisionesDisponibles() {
         throw new UnsupportedOperationException("TODO: implementar Personaje.consultar_misiones_disponibles");
     }
 
@@ -40,6 +40,16 @@ public class Personaje {
     /** completar_mision (RF-04). */
     public void completarMision() {
         throw new UnsupportedOperationException("TODO: implementar Personaje.completar_mision");
+    }
+
+    /** otorgar_experiencia (RF-05). */
+    public void otorgarExperiencia() {
+        throw new UnsupportedOperationException("TODO: implementar Personaje.otorgar_experiencia");
+    }
+
+    /** verificar_subida_nivel (RF-07). */
+    public void verificarSubidaNivel() {
+        throw new UnsupportedOperationException("TODO: implementar Personaje.verificar_subida_nivel");
     }
 
     /** consultar_progresion (RF-06). */

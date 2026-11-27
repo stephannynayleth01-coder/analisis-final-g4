@@ -1,11 +1,9 @@
 @startuml
 ' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
-title CU-03 Consultar avance de un intento activo
+title CU-03 Consultar avance de una misión
 actor "Jugador" as P1
 participant "Personaje" as P2
-participant "IntentoMision" as P3
 
-P1 -> P2 : Consultar avance
-P2 -> P3 : Consultar avance
-P3 -> P2 : Enviar avance
+P1 -> P2 : consultar_avance(mision)
+P2 -> P1 : retorna avance y porcentaje
 @enduml

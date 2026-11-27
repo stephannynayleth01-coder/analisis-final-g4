@@ -1,11 +1,10 @@
 @startuml
 ' Generado por spec2code. Es una PROPUESTA del pipeline: audítala contra la spec.
-title CU-08 Abandonar una misión
-actor "Jugador" as P1
-participant "Personaje" as P2
-participant "IntentoMision" as P3
+title CU-08 Registrar avance en una misión
+actor "Motor del juego" as P1
+participant "IntentoMision" as P2
+participant "Personaje" as P3
 
-P1 -> P2 : Abandonar misión
-P2 -> P3 : Abandonar intento de misión
-P3 -> P2 : Registrar avance
+P1 -> P2 : registrar_avance(unidades)
+P2 -> P3 : retorna intento actualizado
 @enduml

@@ -3,11 +3,7 @@
 title CU-02 Aceptar una misión
 actor "Jugador" as P1
 participant "Personaje" as P2
-participant "Mision" as P3
-participant "IntentoMision" as P4
 
-P1 -> P2 : Aceptar misión
-P2 -> P3 : Consultar disponibilidad
-P3 -> P2 : Crear intento de misión
-P2 -> P4 : Registrar intento de misión
+P1 -> P2 : aceptar_mision(mision)
+P2 -> P1 : retorna nuevo IntentoMision
 @enduml

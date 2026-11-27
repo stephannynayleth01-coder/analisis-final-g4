@@ -9,16 +9,16 @@ from datetime import date
 
 
 class Personaje:
-    """Personaje. Trazabilidad: RN-01, RN-02, RN-03, RN-04, RN-05, RN-06, RN-07, RN-08."""
+    """Personaje. Trazabilidad: RF-01, RF-02, RF-03, RF-04, RF-06, RF-08, RF-09."""
 
-    def __init__(self, identificador: int, nombre: str, nivel: int, experiencia_disponible: int) -> None:
-        self.identificador: int = identificador  # TODO: encapsulamiento (propiedades)
+    def __init__(self, id_personaje: int, nombre: str, nivel: int, experiencia_disponible: int) -> None:
+        self.id_personaje: int = id_personaje  # TODO: encapsulamiento (propiedades)
         self.nombre: str = nombre  # TODO: encapsulamiento (propiedades)
         self.nivel: int = nivel  # TODO: encapsulamiento (propiedades)
         self.experiencia_disponible: int = experiencia_disponible  # TODO: encapsulamiento (propiedades)
-        self.intento_misions: list[IntentoMision] = []  # asociacion: tiene ()
+        self.intento_misions: list[IntentoMision] = []  # asociacion ()
 
-    def consultar_misiones_disponibles(self) -> None:
+    def consultar_misiones_disponibles(self) -> list:
         """consultar_misiones_disponibles (RF-01)."""
         raise NotImplementedError("TODO: implementar Personaje.consultar_misiones_disponibles")
 
@@ -34,6 +34,14 @@ class Personaje:
         """completar_mision (RF-04)."""
         raise NotImplementedError("TODO: implementar Personaje.completar_mision")
 
+    def otorgar_experiencia(self) -> None:
+        """otorgar_experiencia (RF-05)."""
+        raise NotImplementedError("TODO: implementar Personaje.otorgar_experiencia")
+
+    def verificar_subida_nivel(self) -> None:
+        """verificar_subida_nivel (RF-07)."""
+        raise NotImplementedError("TODO: implementar Personaje.verificar_subida_nivel")
+
     def consultar_progresion(self) -> None:
         """consultar_progresion (RF-06)."""
         raise NotImplementedError("TODO: implementar Personaje.consultar_progresion")
@@ -48,36 +56,31 @@ class Personaje:
 
 
 class Mision:
-    """Mision. Trazabilidad: RN-01, RN-02, RN-03, RN-04, RN-05, RN-06, RN-07, RN-08."""
+    """Mision. Trazabilidad: RF-01, RF-02, RF-03, RF-04, RF-05, RF-07, RF-08, RF-09."""
 
-    def __init__(self, identificador: int, nombre: str, nivel_requerido: int, objetivo_total: int, recompensa_experiencia: int) -> None:
-        self.identificador: int = identificador  # TODO: encapsulamiento (propiedades)
+    def __init__(self, id_mision: int, nombre: str, nivel_requerido: int, objetivo_total: int, recompensa_experiencia: int) -> None:
+        self.id_mision: int = id_mision  # TODO: encapsulamiento (propiedades)
         self.nombre: str = nombre  # TODO: encapsulamiento (propiedades)
         self.nivel_requerido: int = nivel_requerido  # TODO: encapsulamiento (propiedades)
         self.objetivo_total: int = objetivo_total  # TODO: encapsulamiento (propiedades)
         self.recompensa_experiencia: int = recompensa_experiencia  # TODO: encapsulamiento (propiedades)
 
-    def consultar_disponibilidad(self) -> None:
-        """consultar_disponibilidad (RF-01)."""
-        raise NotImplementedError("TODO: implementar Mision.consultar_disponibilidad")
+    def consultar_misiones_disponibles(self) -> None:
+        """consultar_misiones_disponibles (RF-01)."""
+        raise NotImplementedError("TODO: implementar Mision.consultar_misiones_disponibles")
 
 
 class IntentoMision:
-    """IntentoMision. Trazabilidad: RN-01, RN-02, RN-03, RN-04, RN-05, RN-06, RN-07, RN-08."""
+    """IntentoMision. Trazabilidad: RF-02, RF-03, RF-04, RF-05, RF-06, RF-07, RF-08, RF-09, RF-10."""
 
-    def __init__(self, identificador: int, personaje: int, mision: int, estado: str, avance: int, fecha_inicio: date, fecha_cierre: date) -> None:
-        self.identificador: int = identificador  # TODO: encapsulamiento (propiedades)
+    def __init__(self, id_intento: int, personaje: int, mision: int, estado: str, avance: int, fecha_inicio: date, fecha_cierre: date) -> None:
+        self.id_intento: int = id_intento  # TODO: encapsulamiento (propiedades)
         self.personaje: int = personaje  # TODO: encapsulamiento (propiedades)
         self.mision: int = mision  # TODO: encapsulamiento (propiedades)
         self.estado: str = estado  # TODO: encapsulamiento (propiedades)
         self.avance: int = avance  # TODO: encapsulamiento (propiedades)
         self.fecha_inicio: date = fecha_inicio  # TODO: encapsulamiento (propiedades)
         self.fecha_cierre: date = fecha_cierre  # TODO: encapsulamiento (propiedades)
-        self.mision: Mision | None = None  # asociacion: pertenece_a ()
-
-    def registrar_avance(self) -> None:
-        """registrar_avance (RF-10)."""
-        raise NotImplementedError("TODO: implementar IntentoMision.registrar_avance")
 
     def completar(self) -> None:
         """completar (RF-04)."""
@@ -86,3 +89,7 @@ class IntentoMision:
     def abandonar(self) -> None:
         """abandonar (RF-09)."""
         raise NotImplementedError("TODO: implementar IntentoMision.abandonar")
+
+    def registrar_avance(self) -> None:
+        """registrar_avance (RF-10)."""
+        raise NotImplementedError("TODO: implementar IntentoMision.registrar_avance")

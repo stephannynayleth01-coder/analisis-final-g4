@@ -5,7 +5,7 @@ hide circle
 skinparam linetype ortho
 
 entity Personaje {
-  * identificador : int <<PK>>
+  * id_personaje : int <<PK>>
   --
   nombre : varchar
   nivel : int
@@ -13,7 +13,7 @@ entity Personaje {
 }
 
 entity Mision {
-  * identificador : int <<PK>>
+  * id_mision : int <<PK>>
   --
   nombre : varchar
   nivel_requerido : int
@@ -22,7 +22,7 @@ entity Mision {
 }
 
 entity IntentoMision {
-  * identificador : int <<PK>>
+  * id_intento : int <<PK>>
   --
   personaje : int
   mision : int
@@ -32,6 +32,5 @@ entity IntentoMision {
   fecha_cierre : date
 }
 
-Personaje ||--|{ IntentoMision : tiene
-IntentoMision ||--|| Mision : pertenece_a
+Personaje ||--o{ IntentoMision
 @enduml
