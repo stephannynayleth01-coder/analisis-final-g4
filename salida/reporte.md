@@ -1,10 +1,10 @@
 # Reporte de la corrida
 
-- Fecha: 2026-11-27 00:00
+- Fecha: 2026-11-27 00:38
 - Spec: `specs/spec_final.md`
-- Origen del modelo: LLM ollama / qwen2.5:7b
-- Intentos al LLM: 2
-- Duración de la extracción: 229.9 s
+- Origen del modelo: archivo modelo_e4_parametros.json (sin LLM)
+- Intentos al LLM: 0
+- Duración de la extracción: 0.0 s
 
 ## Revisión de la spec (sin LLM)
 
@@ -12,10 +12,7 @@
 
 ## Validación del modelo generado
 
-Intento 1 fallido:
-  - Entidad Personaje no indica req_ids (trazabilidad).
-  - Entidad Mision no indica req_ids (trazabilidad).
-  - Entidad IntentoMision no indica req_ids (trazabilidad).
+- Sin observaciones.
 
 ## Cobertura declarada por el modelo
 

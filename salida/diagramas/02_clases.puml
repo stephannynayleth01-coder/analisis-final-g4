@@ -8,14 +8,14 @@ class Personaje {
   - nivel : int
   - experiencia_disponible : int
   + consultar_misiones_disponibles() : List
-  + aceptar_mision()
-  + consultar_avance()
-  + completar_mision()
-  + otorgar_experiencia()
+  + aceptar_mision(mision : Mision)
+  + consultar_avance(mision : Mision)
+  + completar_mision(mision : Mision)
+  + otorgar_experiencia(puntos : int)
   + verificar_subida_nivel()
   + consultar_progresion()
   + consultar_historial()
-  + abandonar_mision()
+  + abandonar_mision(mision : Mision)
 }
 
 class Mision {
@@ -37,7 +37,7 @@ class IntentoMision {
   - fecha_cierre : Date
   + completar()
   + abandonar()
-  + registrar_avance()
+  + registrar_avance(unidades : int)
 }
 
 Personaje "1" -- "0..*" IntentoMision

@@ -22,20 +22,36 @@ class Personaje:
         """consultar_misiones_disponibles (RF-01)."""
         raise NotImplementedError("TODO: implementar Personaje.consultar_misiones_disponibles")
 
-    def aceptar_mision(self) -> None:
-        """aceptar_mision (RF-02)."""
+    def aceptar_mision(self, mision: Mision) -> None:
+        """aceptar_mision (RF-02).
+
+        Args:
+            mision (Mision): entrada del método.
+        """
         raise NotImplementedError("TODO: implementar Personaje.aceptar_mision")
 
-    def consultar_avance(self) -> None:
-        """consultar_avance (RF-03)."""
+    def consultar_avance(self, mision: Mision) -> None:
+        """consultar_avance (RF-03).
+
+        Args:
+            mision (Mision): entrada del método.
+        """
         raise NotImplementedError("TODO: implementar Personaje.consultar_avance")
 
-    def completar_mision(self) -> None:
-        """completar_mision (RF-04)."""
+    def completar_mision(self, mision: Mision) -> None:
+        """completar_mision (RF-04).
+
+        Args:
+            mision (Mision): entrada del método.
+        """
         raise NotImplementedError("TODO: implementar Personaje.completar_mision")
 
-    def otorgar_experiencia(self) -> None:
-        """otorgar_experiencia (RF-05)."""
+    def otorgar_experiencia(self, puntos: int) -> None:
+        """otorgar_experiencia (RF-05).
+
+        Args:
+            puntos (int): entrada del método.
+        """
         raise NotImplementedError("TODO: implementar Personaje.otorgar_experiencia")
 
     def verificar_subida_nivel(self) -> None:
@@ -50,8 +66,12 @@ class Personaje:
         """consultar_historial (RF-08)."""
         raise NotImplementedError("TODO: implementar Personaje.consultar_historial")
 
-    def abandonar_mision(self) -> None:
-        """abandonar_mision (RF-09)."""
+    def abandonar_mision(self, mision: Mision) -> None:
+        """abandonar_mision (RF-09).
+
+        Args:
+            mision (Mision): entrada del método.
+        """
         raise NotImplementedError("TODO: implementar Personaje.abandonar_mision")
 
 
@@ -90,6 +110,10 @@ class IntentoMision:
         """abandonar (RF-09)."""
         raise NotImplementedError("TODO: implementar IntentoMision.abandonar")
 
-    def registrar_avance(self) -> None:
-        """registrar_avance (RF-10)."""
+    def registrar_avance(self, unidades: int) -> None:
+        """registrar_avance (RF-10).
+
+        Args:
+            unidades (int): entrada del método.
+        """
         raise NotImplementedError("TODO: implementar IntentoMision.registrar_avance")

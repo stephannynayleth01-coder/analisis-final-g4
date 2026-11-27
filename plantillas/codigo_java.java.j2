@@ -29,8 +29,20 @@ public {{ 'abstract ' if e.es_abstracta }}class {{ e.nombre }}{% if e.hereda_de 
     // TODO: getters y setters (encapsulamiento)
 {% for mt in e.metodos %}
 
+{% if mt.parametros %}
+    /**
+     * {{ mt.descripcion or mt.nombre }} ({{ mt.req_ids|join(', ') or 'sin req_ids' }}).
+{% for p in mt.parametros %}
+     * @param {{ p.camel }} argumento de tipo {{ p.java }}
+{% endfor %}
+{% if mt.ret_java != 'void' %}
+     * @return valor de tipo {{ mt.ret_java }}
+{% endif %}
+     */
+{% else %}
     /** {{ mt.descripcion or mt.nombre }} ({{ mt.req_ids|join(', ') or 'sin req_ids' }}). */
-    public {{ mt.ret_java }} {{ mt.camel }}() {
+{% endif %}
+    public {{ mt.ret_java }} {{ mt.camel }}({% for p in mt.parametros %}{{ p.java }} {{ p.camel }}{{ ", " if not loop.last }}{% endfor %}) {
         throw new UnsupportedOperationException("TODO: implementar {{ e.nombre }}.{{ mt.nombre }}");
     }
 {% endfor %}

@@ -36,8 +36,11 @@ public class IntentoMision {
         throw new UnsupportedOperationException("TODO: implementar IntentoMision.abandonar");
     }
 
-    /** registrar_avance (RF-10). */
-    public void registrarAvance() {
+    /**
+     * registrar_avance (RF-10).
+     * @param unidades argumento de tipo int
+     */
+    public void registrarAvance(int unidades) {
         throw new UnsupportedOperationException("TODO: implementar IntentoMision.registrar_avance");
     }
 }

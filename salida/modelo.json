@@ -181,7 +181,8 @@
           ],
           "nombre": "consultar_misiones_disponibles",
           "descripcion": "",
-          "retorno": "lista"
+          "retorno": "lista",
+          "parametros": []
         },
         {
           "req_ids": [
@@ -189,7 +190,13 @@
           ],
           "nombre": "aceptar_mision",
           "descripcion": "",
-          "retorno": "ninguno"
+          "retorno": "ninguno",
+          "parametros": [
+            {
+              "nombre": "mision",
+              "tipo": "Mision"
+            }
+          ]
         },
         {
           "req_ids": [
@@ -197,7 +204,13 @@
           ],
           "nombre": "consultar_avance",
           "descripcion": "",
-          "retorno": "ninguno"
+          "retorno": "ninguno",
+          "parametros": [
+            {
+              "nombre": "mision",
+              "tipo": "Mision"
+            }
+          ]
         },
         {
           "req_ids": [
@@ -205,7 +218,13 @@
           ],
           "nombre": "completar_mision",
           "descripcion": "",
-          "retorno": "ninguno"
+          "retorno": "ninguno",
+          "parametros": [
+            {
+              "nombre": "mision",
+              "tipo": "Mision"
+            }
+          ]
         },
         {
           "req_ids": [
@@ -213,7 +232,13 @@
           ],
           "nombre": "otorgar_experiencia",
           "descripcion": "",
-          "retorno": "ninguno"
+          "retorno": "ninguno",
+          "parametros": [
+            {
+              "nombre": "puntos",
+              "tipo": "entero"
+            }
+          ]
         },
         {
           "req_ids": [
@@ -221,7 +246,8 @@
           ],
           "nombre": "verificar_subida_nivel",
           "descripcion": "",
-          "retorno": "ninguno"
+          "retorno": "ninguno",
+          "parametros": []
         },
         {
           "req_ids": [
@@ -229,7 +255,8 @@
           ],
           "nombre": "consultar_progresion",
           "descripcion": "",
-          "retorno": "ninguno"
+          "retorno": "ninguno",
+          "parametros": []
         },
         {
           "req_ids": [
@@ -237,7 +264,8 @@
           ],
           "nombre": "consultar_historial",
           "descripcion": "",
-          "retorno": "ninguno"
+          "retorno": "ninguno",
+          "parametros": []
         },
         {
           "req_ids": [
@@ -245,7 +273,13 @@
           ],
           "nombre": "abandonar_mision",
           "descripcion": "",
-          "retorno": "ninguno"
+          "retorno": "ninguno",
+          "parametros": [
+            {
+              "nombre": "mision",
+              "tipo": "Mision"
+            }
+          ]
         }
       ]
     },
@@ -297,7 +331,8 @@
           ],
           "nombre": "consultar_misiones_disponibles",
           "descripcion": "",
-          "retorno": "ninguno"
+          "retorno": "ninguno",
+          "parametros": []
         }
       ]
     },
@@ -360,7 +395,8 @@
           ],
           "nombre": "completar",
           "descripcion": "",
-          "retorno": "ninguno"
+          "retorno": "ninguno",
+          "parametros": []
         },
         {
           "req_ids": [
@@ -368,7 +404,8 @@
           ],
           "nombre": "abandonar",
           "descripcion": "",
-          "retorno": "ninguno"
+          "retorno": "ninguno",
+          "parametros": []
         },
         {
           "req_ids": [
@@ -376,7 +413,13 @@
           ],
           "nombre": "registrar_avance",
           "descripcion": "",
-          "retorno": "ninguno"
+          "retorno": "ninguno",
+          "parametros": [
+            {
+              "nombre": "unidades",
+              "tipo": "entero"
+            }
+          ]
         }
       ]
     }

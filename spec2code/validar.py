@@ -1,3 +1,4 @@
+# spec2code/validar.py
 """Validación determinista del modelo que devolvió el LLM.
 
 Los ERRORES provocan un reintento automático (se le devuelven al modelo).
@@ -62,6 +63,15 @@ def validar(m: ModeloAnalisis, ids_spec: set[str]) -> Validacion:
             v.errores.append(f"{e.nombre} hereda de '{e.hereda_de}', que no existe.")
         for d in _duplicados([a.nombre for a in e.atributos]):
             v.advertencias.append(f"{e.nombre}: atributo repetido '{d}'.")
+        # Evita generar firmas que no compilan o tipos de entidad inventados.
+        for mt in e.metodos:
+            for d in _duplicados([p.nombre for p in mt.parametros]):
+                v.errores.append(f"{e.nombre}.{mt.nombre}: parámetro repetido '{d}'.")
+            for p in mt.parametros:
+                if p.nombre in {"self", "cls", "this"}:
+                    v.errores.append(f"{e.nombre}.{mt.nombre}: nombre de parámetro reservado '{p.nombre}'.")
+                if p.tipo not in {"texto", "entero", "decimal", "booleano", "fecha", "lista"} and p.tipo not in entidades:
+                    v.errores.append(f"{e.nombre}.{mt.nombre}: tipo de parámetro '{p.tipo}' no es una entidad del modelo.")
     for e in m.entidades:  # ciclos de herencia
         visto, actual = {e.nombre}, e
         while actual.hereda_de and actual.hereda_de in entidades:

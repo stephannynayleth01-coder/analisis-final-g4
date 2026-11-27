@@ -32,8 +32,23 @@ class {{ e.nombre }}{% if e.hereda_de %}({{ e.hereda_de }}){% elif e.es_abstract
 {% endif %}
 {% for mt in e.metodos %}
 
-    def {{ mt.nombre }}(self) -> {{ mt.ret_py }}:
+    def {{ mt.nombre }}(self{% for p in mt.parametros %}, {{ p.nombre }}: {{ p.py }}{% endfor %}) -> {{ mt.ret_py }}:
+{% if mt.parametros %}
+        """{{ mt.descripcion or mt.nombre }} ({{ mt.req_ids|join(', ') or 'sin req_ids' }}).
+
+        Args:
+{% for p in mt.parametros %}
+            {{ p.nombre }} ({{ p.py }}): entrada del método.
+{% endfor %}
+{% if mt.ret_py != 'None' %}
+
+        Returns:
+            {{ mt.ret_py }}: resultado esperado del método.
+{% endif %}
+        """
+{% else %}
         """{{ mt.descripcion or mt.nombre }} ({{ mt.req_ids|join(', ') or 'sin req_ids' }})."""
+{% endif %}
         raise NotImplementedError("TODO: implementar {{ e.nombre }}.{{ mt.nombre }}")
 {% endfor %}
 {% endfor %}

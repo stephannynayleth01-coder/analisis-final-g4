@@ -1,3 +1,4 @@
+# spec2code/render.py
 """ModeloAnalisis -> diagramas PlantUML y esqueleto de código (plantillas Jinja2)."""
 from __future__ import annotations
 
@@ -58,9 +59,20 @@ def _vista_atributo(a) -> dict:
 
 
 def _vista_metodo(mt) -> dict:
+    """Traduce firma de método a tipos Python, Java y UML.
+
+    Entrada: Metodo con parámetros del IR; salida: diccionario para Jinja2.
+    """
     ret = mt.retorno
+    parametros = [
+        {"nombre": p.nombre, "camel": _camel(p.nombre), "tipo": p.tipo,
+         "py": TIPO_PY.get(p.tipo, p.tipo),
+         "java": TIPO_JAVA.get(p.tipo, p.tipo),
+         "uml": TIPO_UML.get(p.tipo, p.tipo)}
+        for p in mt.parametros
+    ]
     return {"nombre": mt.nombre, "camel": _camel(mt.nombre), "descripcion": mt.descripcion.replace("\n", " "),
-            "req_ids": mt.req_ids, "retorno": ret,
+            "req_ids": mt.req_ids, "retorno": ret, "parametros": parametros,
             "ret_py": "None" if ret == "ninguno" else TIPO_PY[ret],
             "ret_java": "void" if ret == "ninguno" else TIPO_JAVA[ret],
             "ret_uml": "" if ret == "ninguno" else TIPO_UML[ret]}
@@ -115,6 +127,9 @@ def construir_vistas(m: ModeloAnalisis) -> dict:
                 "clase": r.hasta, "muchos": muchos, "tipo_rel": r.tipo, "etiqueta": r.etiqueta,
                 "req_ids": r.req_ids,
             })
+        # Los parámetros también pueden requerir imports (fecha/lista).
+        metodos_vista = [_vista_metodo(mt) for mt in e.metodos]
+        tipos_param = {p["tipo"] for mt in metodos_vista for p in mt["parametros"]}
         java_imports = set()
         todos = propios_sin_dup + heredados
         if any(a["tipo"] == "fecha" for a in propios_sin_dup):
@@ -127,12 +142,17 @@ def construir_vistas(m: ModeloAnalisis) -> dict:
             java_imports.add("java.time.LocalDate")
         if any(_vista_metodo(mt)["ret_java"].startswith("List") for mt in e.metodos):
             java_imports.add("java.util.List")
+        if "fecha" in tipos_param:
+            java_imports.add("java.time.LocalDate")
+        if "lista" in tipos_param:
+            java_imports.add("java.util.List")
         entidades.append({
             "nombre": e.nombre, "es_abstracta": e.es_abstracta, "hereda_de": e.hereda_de, "req_ids": e.req_ids,
             "atributos": propios_sin_dup, "heredados": heredados, "constructor": heredados + propios_sin_dup,
-            "metodos": [_vista_metodo(mt) for mt in e.metodos], "campos_rel": campos_rel,
+            "metodos": metodos_vista, "campos_rel": campos_rel,
             "java_imports": sorted(java_imports),
-            "usa_fecha_py": any(a["tipo"] == "fecha" for a in todos),
+            "usa_fecha_py": any(a["tipo"] == "fecha" for a in todos) or "fecha" in tipos_param
+                or any(mt["retorno"] == "fecha" for mt in metodos_vista),
         })
 
     # Casos de uso

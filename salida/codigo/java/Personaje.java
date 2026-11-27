@@ -27,23 +27,35 @@ public class Personaje {
         throw new UnsupportedOperationException("TODO: implementar Personaje.consultar_misiones_disponibles");
     }
 
-    /** aceptar_mision (RF-02). */
-    public void aceptarMision() {
+    /**
+     * aceptar_mision (RF-02).
+     * @param mision argumento de tipo Mision
+     */
+    public void aceptarMision(Mision mision) {
         throw new UnsupportedOperationException("TODO: implementar Personaje.aceptar_mision");
     }
 
-    /** consultar_avance (RF-03). */
-    public void consultarAvance() {
+    /**
+     * consultar_avance (RF-03).
+     * @param mision argumento de tipo Mision
+     */
+    public void consultarAvance(Mision mision) {
         throw new UnsupportedOperationException("TODO: implementar Personaje.consultar_avance");
     }
 
-    /** completar_mision (RF-04). */
-    public void completarMision() {
+    /**
+     * completar_mision (RF-04).
+     * @param mision argumento de tipo Mision
+     */
+    public void completarMision(Mision mision) {
         throw new UnsupportedOperationException("TODO: implementar Personaje.completar_mision");
     }
 
-    /** otorgar_experiencia (RF-05). */
-    public void otorgarExperiencia() {
+    /**
+     * otorgar_experiencia (RF-05).
+     * @param puntos argumento de tipo int
+     */
+    public void otorgarExperiencia(int puntos) {
         throw new UnsupportedOperationException("TODO: implementar Personaje.otorgar_experiencia");
     }
 
@@ -62,8 +74,11 @@ public class Personaje {
         throw new UnsupportedOperationException("TODO: implementar Personaje.consultar_historial");
     }
 
-    /** abandonar_mision (RF-09). */
-    public void abandonarMision() {
+    /**
+     * abandonar_mision (RF-09).
+     * @param mision argumento de tipo Mision
+     */
+    public void abandonarMision(Mision mision) {
         throw new UnsupportedOperationException("TODO: implementar Personaje.abandonar_mision");
     }
 }

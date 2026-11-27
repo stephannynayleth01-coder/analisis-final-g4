@@ -1,3 +1,4 @@
+# spec2code/schema.py
 """Modelo de análisis intermedio (IR).
 
 El LLM NO escribe PlantUML ni código: solo llena este modelo a partir de la spec.
@@ -110,10 +111,40 @@ class Atributo(_Base):
         return a_snake(v)
 
 
+class Parametro(_Base):
+    """Dato de entrada de un método: nombre y tipo primitivo o entidad existente.
+
+    Entrada: nombre del argumento y tipo del esquema o nombre de entidad.
+    Salida: parámetro con identificador normalizado para Python, Java y UML.
+    """
+
+    nombre: str = Field(description="Nombre del argumento, p. ej. 'unidades' o 'mision'")
+    tipo: str = Field(description="Tipo nativo (entero, texto, decimal, booleano, fecha, lista) o entidad como Mision")
+
+    @field_validator("nombre")
+    @classmethod
+    def _nombre(cls, v: str) -> str:
+        return a_snake(v)
+
+    @field_validator("tipo")
+    @classmethod
+    def _tipo(cls, v: str) -> str:
+        limpio = v.strip()
+        if not limpio or not re.fullmatch(r"[A-Za-z_][A-Za-z_0-9]*", _ascii(limpio)):
+            raise ValueError("El tipo del parámetro debe ser un tipo nativo o un identificador de entidad")
+        if limpio.lower() in ("texto", "entero", "decimal", "booleano", "fecha", "lista"):
+            return limpio.lower()
+        return a_identificador(limpio)
+
+
 class Metodo(Trazable):
     nombre: str = Field(description="Verbo en minúsculas con guiones bajos, p. ej. 'equipar_arma'")
     descripcion: str = ""
     retorno: TipoRetorno = "ninguno"
+    parametros: list[Parametro] = Field(
+        default_factory=list,
+        description="Parámetros de entrada en orden, con nombre y tipo. [] si el método no recibe argumentos.",
+    )
 
     @field_validator("nombre")
     @classmethod

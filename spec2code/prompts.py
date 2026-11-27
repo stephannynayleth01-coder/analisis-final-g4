@@ -1,3 +1,4 @@
+# spec2code/prompts.py
 """Prompts del pipeline. Léelos: son parte de lo que debes auditar.
 
 El prompt no garantiza un resultado perfecto: el modelo puede omitir requerimientos,
@@ -20,7 +21,10 @@ minúsculas con guiones bajos (p. ej. "puntos_vida", "equipar_arma").
 6. Para los casos de uso más importantes genera una secuencia de 3 a 8 mensajes; los participantes \
 deben ser actores o entidades del modelo.
 7. Multiplicidades permitidas: "1", "0..1", "*", "0..*", "1..*".
-8. Responde únicamente con el objeto JSON del esquema, sin texto adicional."""
+8. Cada método incluye "parametros": objetos con "nombre" y "tipo", en el orden indicado en la spec. \
+Usa tipos nativos (texto, entero, decimal, booleano, fecha, lista) o nombres de entidades existentes \
+(como Mision). No inventes entradas. Para los métodos sin argumentos, usa la lista vacía [].
+9. Responde únicamente con el objeto JSON del esquema, sin texto adicional."""
 
 
 def prompt_usuario(spec: str, ids: list[str]) -> str:
